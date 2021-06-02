@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.northwind.business.abstracts.ProductService;
 import kodlamaio.northwind.core.utilities.results.DataResult;
 import kodlamaio.northwind.entities.concretes.Product;
+import kodlamaio.northwind.entities.dtos.ProductWithCategoryDto;
 
 import java.util.List;
 
@@ -36,6 +37,15 @@ public class ProductsController {
 	
 		
 	}
+	
+	@GetMapping("/getProductWithCategoryDetails")
+	public DataResult<List<ProductWithCategoryDto>>getProductWithCategoryDetails(){
+		return this.productService.getProductWithCategoryDetails();
+	
+		
+	}
+	
+	
 	@PostMapping("/add")
 	public Result add(@RequestBody Product product) {
 		return this.productService.add(product);
@@ -69,6 +79,8 @@ public class ProductsController {
 		return this.productService.getAll(pageNo-1, pageSize);
 		
 	}
+	
+	
 	@GetMapping("/getAllDesc")
 	public DataResult<List<Product>> getAllSorted() {
 		return this.productService.getAllSorted();
